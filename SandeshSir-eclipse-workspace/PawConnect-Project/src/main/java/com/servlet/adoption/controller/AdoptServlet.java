@@ -11,37 +11,34 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/adopt")
-public class AdoptServlet extends HttpServlet{
+@WebServlet("/AdoptServlet")
+public class AdoptServlet extends HttpServlet {
+   
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-        int petId = Integer.parseInt(req.getParameter("petId"));
+    protected void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+
+        // Get values from form
+        String petId = req.getParameter("petId");
         String fullName = req.getParameter("fullName");
         String email = req.getParameter("email");
-        String phone = req.getParameter("phone");
+        Long phone = Long.parseLong(req.getParameter("phone"));
         String address = req.getParameter("address");
         String message = req.getParameter("message");
 
-        Adoption adoption = new Adoption();
-        adoption.setPetId(petId);
-        adoption.setFullName(fullName);
-        adoption.setEmail(email);
-        adoption.setPhone(phone);
-        adoption.setAddress(address);
-        adoption.setMessage(message);
 
-        AdoptionDAO dao = new AdoptionDAOImpl();
-        boolean success = dao.saveAdoption(adoption);
+        HttpSession session = req.getSession();
+        session.setAttribute("petId", petId);
+        session.setAttribute("fullName", fullName);
+        session.setAttribute("email", email);
+        session.setAttribute("phone", phone);
+        session.setAttribute("address", address);
+        session.setAttribute("message", message);
 
-        if (success) {
-            resp.sendRedirect("success.jsp");
-        } else {
-            resp.sendRedirect("error.jsp");
-        }
-
-	}
-	
-
+        // Redirect to success page
+        res.sendRedirect("adoption-success.jsp");
+    }
 }

@@ -11,12 +11,26 @@
 <body>
     <%@ include file="header.jsp" %>
     <div class="main-content">
-         <section class="pets-section">
+    
+    <section class="pets-section">
         <div class="container">
             <div class="section-title">
                 <h2>Available Pets for Adoption</h2>
                 <p>Find your perfect furry companion from our loving pets</p>
             </div>
+            
+            <!-- ADDED: Success message for adoption -->
+            <%
+            String adoption = request.getParameter("adoption");
+            String pet = request.getParameter("pet");
+            if("success".equals(adoption) && pet != null) {
+            %>
+                <div class="success-message" style="background: #e8f5e8; color: #2e7d32; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c8e6c9; text-align: center;">
+                    Thank you! Your adoption application for <%= pet %> has been submitted successfully.
+                </div>
+            <%
+            }
+            %>
             
             <div class="filters-container">
                 <div class="filters">
@@ -45,7 +59,7 @@
                 <!-- Dogs - 8 Animals -->
                 <div class="pet-card" data-species="Dog" data-age="1">
                     <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Max">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.9jp3vrVA5qHN5WLPI6ebQAHaLH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Max">
                         <div class="pet-tag puppy-tag">Puppy</div>
                     </div>
                     <div class="pet-info">
@@ -288,21 +302,21 @@
                     </div>
                 </div>
                 
-                <div class="pet-card" data-species="Bird" data-age="1">
-                    <div class="pet-image">
-                        <img src=https://th.bing.com/th/id/R.585205c60ad83e20a5ac6c861271e2b1?rik=tlYEZ9zaIvFuJQ&riu=http%3a%2f%2fwww.singing-wings-aviary.com%2fwp-content%2fuploads%2f2015%2f02%2fDomestic-Canary-Images.jpg&ehk=KQ2ZIqhufn0kYg9rnvmLKaJunk8YiogvBU4Aj31Fbp0%3d&risl=&pid=ImgRaw&r=0 alt="Sunny">
-                        <div class="pet-tag young-tag">Young</div>
-                    </div>
-                    <div class="pet-info">
-                        <h3>Sunny</h3>
-                        <span class="species-tag bird-tag">Bird</span>
-                        <p><strong>Breed:</strong> Canary</p>
-                        <p><strong>Age:</strong> 1 year</p>
-                        <p><strong>Gender:</strong> Female</p>
-                        <p class="pet-location">📍 Mumbai</p>
-                        <button class="btn btn-primary" onclick="openAdoptionForm(12, 'Sunny')">Adopt Me</button>
-                    </div>
-                </div>
+               <div class="pet-card" data-species="Bird" data-age="1">
+    <div class="pet-image">
+        <img src="https://th.bing.com/th/id/R.585205c60ad83e20a5ac6c861271e2b1?rik=tlYEZ9zaIvFuJQ&riu=http%3a%2f%2fwww.singing-wings-aviary.com%2fwp-content%2fuploads%2f2015%2f02%2fDomestic-Canary-Images.jpg&ehk=KQ2ZIqhufn0kYg9rnvmLKaJunk8YiogvBU4Aj31Fbp0%3d&risl=&pid=ImgRaw&r=0" alt="Sunny">
+        <div class="pet-tag young-tag">Young</div>
+    </div>
+    <div class="pet-info">
+        <h3>Sunny</h3>
+        <span class="species-tag bird-tag">Bird</span>
+        <p><strong>Breed:</strong> Canary</p>
+        <p><strong>Age:</strong> 1 year</p>
+        <p><strong>Gender:</strong> Female</p>
+        <p class="pet-location">📍 Mumbai</p>
+        <button class="btn btn-primary" onclick="openAdoptionForm(12, 'Sunny')">Adopt Me</button>
+    </div>
+</div>
 
                 <div class="pet-card" data-species="Bird" data-age="4">
                     <div class="pet-image">
@@ -437,13 +451,14 @@
     </section>
 
     <!-- Adoption Form Modal -->
-    <div id="adoptionModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAdoptionForm()">&times;</span>
-            <h2>Adoption Application</h2>
-            
-            <form id="adoptionForm" action="AdoptionServlet" method="post">
+    <!-- Adoption Form Modal - FIXED SCROLLING -->
+    <div id="adoptionModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow: auto; padding: 20px 0;">
+        <div class="modal-content" style="background: white; max-width: 500px; margin: 50px auto; padding: 30px; border-radius: 15px; position: relative;">
+            <span onclick="closeAdoptionForm()" style="position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; color: #000; font-weight: bold;">&times;</span>
+            <h2 id="modalTitle">Adoption Application</h2>
+            <form action="adoption-process.jsp" method="post">
                 <input type="hidden" id="petId" name="petId">
+                <input type="hidden" id="petName" name="petName">
                 
                 <div class="form-group">
                     <label for="fullName">Full Name *</label>
@@ -479,15 +494,36 @@
     <%@ include file="footer.jsp" %>
     
     <script>
-        function openAdoptionForm(petId, petName) {
-            document.getElementById('petId').value = petId;
-            document.getElementById('adoptionModal').style.display = 'block';
-            document.querySelector('#adoptionModal h2').textContent = 'Adopt ' + petName;
-        }
+    function openAdoptionForm(petId, petName) {
+	    <%
+	    if(session.getAttribute("user") == null) {
+	    %>
+	        if(confirm('Please login to adopt a pet. Would you like to login now?')) {
+	            window.location.href = 'login.jsp?redirect=' + encodeURIComponent('pets.jsp?action=adopt&pet=' + petId);
+	        }
+	    <%
+	    } else {
+	    %>
+	        document.getElementById('petId').value = petId;
+	        document.getElementById('petName').value = petName;
+	        document.getElementById('adoptionModal').style.display = 'block';
+	        document.getElementById('modalTitle').textContent = 'Adopt ' + petName;
+	        
+	        // Simple scroll to top
+	        window.scrollTo(0, 0);
+	        
+	        // Focus on the first input field
+	        setTimeout(function() {
+	            document.getElementById('fullName').focus();
+	        }, 100);
+	    <%
+	    }
+	    %>
+	}
 
-        function closeAdoptionForm() {
-            document.getElementById('adoptionModal').style.display = 'none';
-        }
+	function closeAdoptionForm() {
+	    document.getElementById('adoptionModal').style.display = 'none';
+	}
 
         function resetFilters() {
             document.getElementById('speciesFilter').value = '';
@@ -548,6 +584,13 @@
                 closeAdoptionForm();
             }
         }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAdoptionForm();
+            }
+        });
     </script>
 </body>
 </html>

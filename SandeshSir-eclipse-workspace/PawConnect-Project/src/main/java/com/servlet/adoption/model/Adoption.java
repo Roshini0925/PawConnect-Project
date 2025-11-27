@@ -5,11 +5,25 @@ public class Adoption {
 	    private int petId;
 	    private String fullName;
 	    private String email;
-	    private String phone;
+	    private Long phone;
 	    private String address;
 	    private String message;
 
-	    public int getId() { return id; }
+	    
+		public Adoption(int id,int petId,String fullName,String email,Long phone,String address,String message) 
+	    {
+		
+			this.id = id;
+			this.petId = petId;
+			this.fullName = fullName;
+			this.email = email;
+			this.phone = phone;
+			this.address = address;
+			this.message = message;
+		}
+		
+	
+		public int getId() { return id; }
 	    public void setId(int id) { this.id = id; }
 
 	    public int getPetId() { return petId; }
@@ -21,8 +35,8 @@ public class Adoption {
 	    public String getEmail() { return email; }
 	    public void setEmail(String email) { this.email = email; }
 
-	    public String getPhone() { return phone; }
-	    public void setPhone(String phone) { this.phone = phone; }
+	    public Long getPhone() { return phone; }
+	    public void setPhone(Long phone) { this.phone = phone; }
 
 	    public String getAddress() { return address; }
 	    public void setAddress(String address) { this.address = address; }

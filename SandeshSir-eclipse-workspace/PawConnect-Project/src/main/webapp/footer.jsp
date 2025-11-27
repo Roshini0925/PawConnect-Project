@@ -34,8 +34,8 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> Devarachikkanahalli, Bengaluru, Karnataka - 560068</li>
-                    <li><i class="fas fa-phone"></i> +91 8951505875</li>
+                    <li><i class="fas fa-map-marker-alt"></i> J.P.Nagar, Bengaluru, Karnataka - 560068</li>
+                    <li><i class="fas fa-phone"></i> +91 9972918755</li>
                     <li><i class="fas fa-envelope"></i> info@pawconnect.com</li>
                 </ul>
             </div>

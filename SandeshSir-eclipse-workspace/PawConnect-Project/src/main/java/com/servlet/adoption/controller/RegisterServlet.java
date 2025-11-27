@@ -6,7 +6,6 @@ import com.servlet.adoption.dao.UserDAO;
 import com.servlet.adoption.dao.UserDAOImpl;
 import com.servlet.adoption.dto.User;
 import com.servlet.adoption.util.PasswordHash;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,7 +24,7 @@ public class RegisterServlet extends HttpServlet {
 
         String fullName = req.getParameter("fullName");
         String email = req.getParameter("email");
-        String phone = req.getParameter("phone");
+        Long phone = Long.parseLong(req.getParameter("phone"));
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirmPassword");
 
@@ -46,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
         // Hash the password
         String hashedPassword = PasswordHash.hashPassword(password);
 
-        User user = new User(fullName,email, Long.parseLong(phone), hashedPassword);
+        User user = new User(fullName,email, phone, hashedPassword);
 
         boolean isRegistered = userDAO.registerUser(user);
 

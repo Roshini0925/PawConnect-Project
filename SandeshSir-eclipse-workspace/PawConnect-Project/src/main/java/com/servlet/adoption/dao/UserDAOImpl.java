@@ -13,7 +13,7 @@ import com.servlet.adoption.util.DBConnection;
 
 	    @Override
 	    public boolean registerUser(User user) {
-	        String sql= "INSERT INTO users(fullName, email, phone, password) VALUES (?, ?, ?, ?)";
+	        String sql=("INSERT INTO users(fullName, email, phone, password) VALUES (?, ?, ?, ?)");
 
 	        try {
 	        	Connection con = DBConnection.getConnector();
@@ -34,15 +34,22 @@ import com.servlet.adoption.util.DBConnection;
 	
 	    @Override
 	    public boolean emailExists(String email) {
-	        String sql= "SELECT email FROM users WHERE email=?";
+	        String sql=("SELECT email FROM users WHERE email=?");
 	        try {
 	        Connection con = DBConnection.getConnector();
 	             PreparedStatement ps = con.prepareStatement(sql);
 
 	            ps.setString(1, email);
 	            ResultSet rs = ps.executeQuery();
-
-	            return rs.next(); // email already exists
+	            if(rs.next()) {
+	            	User user = new User();
+	            	user.setFullName(rs.getString("fullName"));
+	            	user.setEmail(rs.getString("email"));
+	            	user.setPhone(rs.getLong("phone"));
+	            	user.setPassword(rs.getString("password"));
+	            	
+	            	return true;
+	            }
 
 	        } catch (Exception e) {
 	            e.printStackTrace();
@@ -51,24 +58,28 @@ import com.servlet.adoption.util.DBConnection;
 	    }
 
 		@Override
-		public boolean loginUser(String email, String hashedPassword) {
-	
-			    String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+		public User loginUser(String email, String hashedPassword) {
+		    User user = null;
+		    String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
-			    try (Connection con = DBConnection.getConnector();
-			         PreparedStatement ps = con.prepareStatement(sql)) {
+		    try {
+		        Connection con = DBConnection.getConnector();
+		        PreparedStatement ps = con.prepareStatement(sql);
+		        ps.setString(1, email);
+		        ps.setString(2, hashedPassword);
 
-			        ps.setString(1, email);
-			        ps.setString(2, hashedPassword);
+		        ResultSet rs = ps.executeQuery();
 
-			        ResultSet rs = ps.executeQuery();
+		        if (rs.next()) {
+		            user = new User();
+		            user.setEmail(rs.getString("email"));
+		            user.setPassword(rs.getString("password"));
+		        }
 
-			        return rs.next(); // True if match found
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
 
-			    } catch (Exception e) {
-			        e.printStackTrace();
-			    }
-		
-			return false;
+		    return user;  
 		}
 	}

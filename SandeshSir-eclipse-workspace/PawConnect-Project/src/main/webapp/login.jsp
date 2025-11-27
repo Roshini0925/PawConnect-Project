@@ -1,4 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String redirectUrl = request.getParameter("redirect");
+if(redirectUrl == null) {
+    redirectUrl = "index.jsp";
+}
+
+String error = request.getParameter("error");
+String registration = request.getParameter("registration");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +25,23 @@
         <div class="container">
             <div class="auth-form">
                 <h2>Login to PawConnect</h2>
+                
+                <% if("1".equals(error)) { %>
+                    <div class="error-message" style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #ffcdd2;">
+                        Invalid email or password. Please try again.
+                    </div>
+                <% } %>
+                
+                <% if("success".equals(registration)) { %>
+                    <div class="success-message" style="background: #e8f5e8; color: #2e7d32; padding: 10px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #c8e6c9;">
+                        Registration successful! Please login with your credentials.
+                    </div>
+                <% } %>
+                
                 <form action="login" method="post">
+                    <input type="hidden" name="redirect" value="<%= redirectUrl %>">
                     <div class="form-group">
-                         <label for="email">Email</label>
+                        <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
@@ -32,6 +56,5 @@
     </section>
 
     <%@ include file="footer.jsp" %>
-    <script src="js/validation.js"></script>
 </body>
 </html>

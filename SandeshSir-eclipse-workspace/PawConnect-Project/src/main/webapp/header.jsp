@@ -14,7 +14,7 @@
             <!-- Navigation Links -->
             <ul class="nav-links">
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="pets.jsp">ADOPT</a></li>
+                <li><a href="pet.jsp">ADOPT</a></li>
                 <li><a href="about.jsp">ABOUT US</a></li>
                 <li><a href="contact.jsp">CONTACT</a></li>
             </ul>

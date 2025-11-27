@@ -267,11 +267,24 @@
     <%@ include file="footer.jsp" %>
     
     <script>
-        function selectVet(vetName) {
-            document.getElementById('selectedVet').value = vetName;
-            document.querySelector('.appointment-form-section h3').textContent = 'Book with ' + vetName;
-            document.querySelector('.appointment-form-section').scrollIntoView({ behavior: 'smooth' });
+    function selectVet(vetName) {
+        <%
+        if(session.getAttribute("user") == null) {
+        %>
+            // User not logged in
+            if(confirm('Please login to book appointments. Would you like to login now?')) {
+                window.location.href = 'login.jsp?redirect=' + encodeURIComponent('vet-care.jsp');
+            }
+            return;
+        <%
         }
+        %>
+        
+        // User is logged in - proceed with booking
+        document.getElementById('selectedVet').value = vetName;
+        document.querySelector('.appointment-form-section h3').textContent = 'Book with ' + vetName;
+        document.querySelector('.appointment-form-section').scrollIntoView({ behavior: 'smooth' });
+    }
 
         document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             e.preventDefault();

@@ -26,21 +26,21 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-    	        String email = req.getParameter("useremail");
+    	        String email = req.getParameter("email");
     	        String password = req.getParameter("password");
 
     	        // Convert password into hash
     	        String hashedPassword = PasswordHash.hashPassword(password);
     	        
-    	       boolean isValid = userDAO.loginUser(hashedPassword, hashedPassword);
-    	       if (isValid) {
+    	       User user= userDAO.loginUser(email, hashedPassword);
+    	       if (user!=null) {
     	            // Create session
     	            HttpSession session = req.getSession();
-    	            session.setAttribute("Email", email);
+    	            session.setAttribute("user", user);
     	            resp.sendRedirect("pet.jsp");  // Redirect to homepage
     	        } else {
     	            req.setAttribute("message", "Invalid Email or Password!");
-    	            req.getRequestDispatcher("login.jsp").forward(req, resp);
+    	            req.getRequestDispatcher("home.jsp").forward(req, resp);
     	        }
     }
 }

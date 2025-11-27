@@ -19,6 +19,7 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
+                    
                         <h1>Find Your Perfect <span class="highlight">Pet Companion</span></h1>
                         <p>PawConnect is established with the motto "Pet Me Good" which helps you find your dream pet. Our services enable you to cater to all your pet needs with ease and from the comfort of your home.</p>
                         <p>Get all your pet supplies at your doorstep via our application. Our aim is to provide customers with the best services so you can focus on what matters most - the love and care for your furry friends.</p>
@@ -62,7 +63,7 @@
                 </div>
                 <div class="features-grid">
                     <!-- Adoption Process Card -->
-                    <div class="feature-card" onclick="window.location.href='pets.jsp'">
+                    <div class="feature-card" onclick="window.location.href='pet.jsp'">
                         <div class="feature-icon">
                             <i class="fas fa-dog"></i>
                         </div>

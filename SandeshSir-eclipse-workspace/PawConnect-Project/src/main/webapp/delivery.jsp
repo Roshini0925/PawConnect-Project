@@ -601,7 +601,7 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.jsp">Home</a></li>
-                    <li><a href="pets.jsp">Find Pets</a></li>
+                    <li><a href="pet.jsp">Find Pets</a></li>
                     <li><a href="services.jsp">Services</a></li>
                     <li><a href="delivery.jsp" style="color: var(--primary);">Delivery</a></li>
                     <li><a href="about.jsp">About</a></li>
@@ -1437,7 +1437,7 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.jsp">Home</a></li>
-                        <li><a href="pets.jsp">Find Pets</a></li>
+                        <li><a href="pet.jsp">Find Pets</a></li>
                         <li><a href="services.jsp">Services</a></li>
                         <li><a href="delivery.jsp">Delivery</a></li>
                         <li><a href="about.jsp">About Us</a></li>
@@ -1461,7 +1461,7 @@
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-map-marker-alt"></i> 123 Pet Street, City</li>
-                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-phone"></i> +91 9972918755</li>
                         <li><i class="fas fa-envelope"></i> info@pawconnect.com</li>
                     </ul>
                 </div>

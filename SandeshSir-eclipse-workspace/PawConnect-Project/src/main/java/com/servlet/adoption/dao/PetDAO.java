@@ -2,11 +2,15 @@ package com.servlet.adoption.dao;
 
 import java.util.List;
 
-import com.servlet.adoption.model.Pet;
+import com.servlet.adoption.model.Pets;
 
 public interface PetDAO {
-
-	    List<Pet>getAllPets();
+boolean addPet(Pets pet);
+	List<Pets>getAllPets();
+	Pets getPetById(int petId);
+	boolean updatePet(Pets pet);
+	boolean deletePet(int petId);
+	    
 	}
 
 
