@@ -454,12 +454,12 @@
         <div class="nav-container">
             <div class="logo">PawConnect</div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Find Pets</a></li>
+                <li><a href="home.jsp">Home</a></li>
+                <li><a href="pets.jsp">Find Pets</a></li>
                 <li><a href="#" style="color: #8B5FBF;">Services</a></li>
-                <li><a href="#">Delivery</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="delivery.jsp">Delivery</a></li>
+                <li><a href="about.jsp">About</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
             </ul>
             <div class="auth-buttons">
                 <button class="btn btn-login">Login</button>
@@ -659,10 +659,10 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Adopt a Pet</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="pets.jsp">Adopt a Pet</a></li>
+                    <li><a href="about.jsp">About Us</a></li>
+                    <li><a href="contact.jsp">Contact</a></li>
                 </ul>
             </div>
             
@@ -671,7 +671,7 @@
                 <ul class="footer-links">
                     <li><a href="#">Pet Adoption</a></li>
                     <li><a href="#">Pet Supplies</a></li>
-                    <li><a href="#">Veterinary Care</a></li>
+                    <li><a href="vet-care.jsp">Veterinary Care</a></li>
                     <li><a href="#">Pet Training</a></li>
                 </ul>
             </div>
@@ -700,7 +700,6 @@
             });
         });
 
-        // Add smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

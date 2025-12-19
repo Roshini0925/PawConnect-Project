@@ -232,4 +232,4 @@ function filterPets() {
 
 function adoptPet(petName) {
     alert(`Thank you for your interest in adopting ${petName}! We will contact you soon.`);
-}                       this is script.js
+}

@@ -7,11 +7,13 @@ import com.servlet.adoption.dao.AdminDAOImpl;
 import com.servlet.adoption.util.PasswordHash;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+@WebServlet("/admin-login")
 public class AdminLoginServlet extends HttpServlet{
 		
 		private AdminDAO adminDAO = new AdminDAOImpl();

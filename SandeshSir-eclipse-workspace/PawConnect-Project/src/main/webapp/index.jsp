@@ -24,7 +24,7 @@
                         <p>PawConnect is established with the motto "Pet Me Good" which helps you find your dream pet. Our services enable you to cater to all your pet needs with ease and from the comfort of your home.</p>
                         <p>Get all your pet supplies at your doorstep via our application. Our aim is to provide customers with the best services so you can focus on what matters most - the love and care for your furry friends.</p>
                         <div class="hero-buttons">
-                            <button class="btn btn-primary" onclick="window.location.href='pet.jsp'">Find a Pet</button>
+                            <button class="btn btn-primary" onclick="window.location.href='pets.jsp'">Find a Pet</button>
                             <button class="btn btn-secondary" onclick="window.location.href='about.jsp'">Learn More</button>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="features-grid">
                     <!-- Adoption Process Card -->
-                    <div class="feature-card" onclick="window.location.href='pet.jsp'">
+                    <div class="feature-card" onclick="window.location.href='pets.jsp'">
                         <div class="feature-icon">
                             <i class="fas fa-dog"></i>
                         </div>
@@ -73,7 +73,7 @@
                     </div>
                     
                     <!-- Fast Delivery Card -->
-                    <div class="feature-card" onclick="window.location.href='delivery.jsp'">
+                    <div class="feature-card" onclick="window.location.href='products'">
                         <div class="feature-icon">
                             <i class="fas fa-shipping-fast"></i>
                         </div>

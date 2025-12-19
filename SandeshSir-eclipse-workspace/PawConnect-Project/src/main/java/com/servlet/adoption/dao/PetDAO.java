@@ -5,7 +5,7 @@ import java.util.List;
 import com.servlet.adoption.model.Pets;
 
 public interface PetDAO {
-boolean addPet(Pets pet);
+boolean addPet(Pets pets);
 	List<Pets>getAllPets();
 	Pets getPetById(int petId);
 	boolean updatePet(Pets pet);

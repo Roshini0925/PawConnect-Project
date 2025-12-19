@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <%@ include file="header.jsp" %>
+<jsp:include page="header.jsp" />
     
     <!-- ADDED: Main content wrapper -->
     <div class="main-content">

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.servlet.adoption.dto.User;
 import com.servlet.adoption.util.DBConnection;
@@ -18,7 +20,6 @@ import com.servlet.adoption.util.DBConnection;
 	        try {
 	        	Connection con = DBConnection.getConnector();
 	             PreparedStatement ps = con.prepareStatement(sql);
-
 	            ps.setString(1, user.getFullName());
 	            ps.setString(2, user.getEmail());
 	            ps.setLong(3, user.getPhone());
@@ -57,29 +58,55 @@ import com.servlet.adoption.util.DBConnection;
 	        return false;
 	    }
 
-		@Override
-		public User loginUser(String email, String hashedPassword) {
-		    User user = null;
-		    String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+	    @Override
+	    public User loginUser(String email, String hashedPassword) {
+	        User user = null;
+	        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
-		    try {
-		        Connection con = DBConnection.getConnector();
-		        PreparedStatement ps = con.prepareStatement(sql);
-		        ps.setString(1, email);
-		        ps.setString(2, hashedPassword);
+	        try {
+	            Connection con = DBConnection.getConnector();
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ps.setString(1, email);
+	            ps.setString(2, hashedPassword);
 
-		        ResultSet rs = ps.executeQuery();
+	            ResultSet rs = ps.executeQuery();
 
-		        if (rs.next()) {
-		            user = new User();
-		            user.setEmail(rs.getString("email"));
-		            user.setPassword(rs.getString("password"));
-		        }
+	            if (rs.next()) {
+	                user = new User();
+	                user.setFullName(rs.getString("fullName"));   // ✅ IMPORTANT
+	                user.setEmail(rs.getString("email"));
+	                user.setPassword(rs.getString("password"));
+	            }
 
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		    }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 
-		    return user;  
-		}
+	        return user;
+	    }
+	    @Override
+	    public List<User> getAllUsers() {
+	        List<User> list = new ArrayList<>();
+	        String sql = "SELECT * FROM users";
+
+	        try {
+	            Connection con = DBConnection.getConnector();
+	            PreparedStatement ps = con.prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+
+	            while (rs.next()) {
+	                User u = new User();
+	                
+	                u.setFullName(rs.getString("fullName"));
+	                u.setEmail(rs.getString("email"));
+	                u.setPhone(rs.getLong("phone"));
+	                list.add(u);
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return list;
+	    }
 	}
+	

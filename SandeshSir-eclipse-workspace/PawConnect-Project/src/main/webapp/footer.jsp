@@ -27,7 +27,7 @@
                 <ul class="footer-links">
                     <li><a href="pets.jsp">Pet Adoption</a></li>
                     <li><a href="#">Pet Supplies</a></li>
-                    <li><a href="#">Veterinary Care</a></li>
+                    <li><a href="vet-care.jsp">Veterinary Care</a></li>
                     <li><a href="#">Pet Training</a></li>
                 </ul>
             </div>

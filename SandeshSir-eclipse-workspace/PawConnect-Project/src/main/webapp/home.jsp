@@ -2,10 +2,10 @@
 
 <%@ page session="true" %>
 <%
-    String userEmail = (String) session.getAttribute("userEmail");
+    String userEmail = (String) session.getAttribute("Email");
 
     if (userEmail == null) {
-        response.sendRedirect("pet.jsp");
+        response.sendRedirect("pets.jsp");
         return;
     }
 %>
@@ -134,7 +134,7 @@
 
 <body>
 
-<%@ include file="header.jsp" %>
+<jsp:include page="header.jsp" />
 
 <!-- ================= HERO ================== -->
 <section class="hero">

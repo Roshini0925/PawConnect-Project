@@ -2,6 +2,7 @@
 <%
 
 // Get form parameters
+
 String fullName = request.getParameter("fullName");
 String email = request.getParameter("email");
 String phone = request.getParameter("phone");

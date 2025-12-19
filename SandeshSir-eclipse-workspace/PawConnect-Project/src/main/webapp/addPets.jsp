@@ -81,7 +81,7 @@
     <div class="container">
         <h2>Add New Pet</h2>
 
-        <form action="AddPetServlet" method="post" enctype="multipart/form-data">
+<form action="AddPets" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label>Pet Name</label>
@@ -107,25 +107,32 @@
                 <label>Age (in years)</label>
                 <input type="number" name="age" min="0" required>
             </div>
-
             <div class="form-group">
-                <label>Description</label>
-                <textarea name="description" rows="4" required></textarea>
-            </div>
-
+             <label>Gender</label>
+             <select name="gender" required>
+             <option value="Male">Male</option>
+             <option value="Female">Female</option>
+             <option value="Unknown">Unknown</option>
+             </select>
+             </div>
+            
+             <div class="form-group">
+              <label>Upload Image</label>
+             <input type="file" name="imageUrl" accept="image/*" required>
+               </div>
             <div class="form-group">
-                <label>Upload Image</label>
-                <input type="file" name="image" accept="image/*" required>
-            </div>
-
+                <label>📍Location</label>
+           <textarea name="location" rows="4" required></textarea>
+                <p class="pet-location"> </p>
+                
+             </div>
             <button type="submit">Add Pet</button>
 
             <p class="back-link">
-                <a href="admin-dashboard.jsp">← Back to Dashboard</a>
+                <a href="adminDashboard.jsp">← Back to Dashboard</a>
             </p>
 
         </form>
     </div>
-
 </body>
 </html>

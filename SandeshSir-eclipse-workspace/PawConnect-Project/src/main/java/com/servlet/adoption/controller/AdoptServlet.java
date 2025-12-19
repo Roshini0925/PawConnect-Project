@@ -22,7 +22,6 @@ public class AdoptServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // Get values from form
-        String petId = req.getParameter("petId");
         String fullName = req.getParameter("fullName");
         String email = req.getParameter("email");
         Long phone = Long.parseLong(req.getParameter("phone"));
@@ -31,7 +30,6 @@ public class AdoptServlet extends HttpServlet {
 
 
         HttpSession session = req.getSession();
-        session.setAttribute("petId", petId);
         session.setAttribute("fullName", fullName);
         session.setAttribute("email", email);
         session.setAttribute("phone", phone);

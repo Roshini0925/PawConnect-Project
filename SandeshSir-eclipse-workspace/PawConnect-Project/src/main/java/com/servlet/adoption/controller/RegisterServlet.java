@@ -55,5 +55,6 @@ public class RegisterServlet extends HttpServlet {
             req.setAttribute("message", "Registration failed. Try again!");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
+        
     }
 }

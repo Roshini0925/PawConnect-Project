@@ -48,8 +48,10 @@ String error = request.getParameter("error");
                         <label for="confirmPassword">Confirm Password *</label>
                         <input type="password" id="confirmPassword" name="confirmPassword" required>
                     </div>
+        
                     <button type="submit" class="btn btn-primary btn-full">Create Account</button>
                 </form>
+            	 
                 <p class="auth-link">Already have an account? <a href="login.jsp">Login here</a></p>
             </div>
         </div>

@@ -142,11 +142,11 @@ input, textarea {
     %>
         <div class="pet-card">
             <img src="<%= p.getImageUrl() %>" alt="Pet Image">
-            <h3><%= p.getName() %></h3>
+            <h3><%= p.getPetName() %></h3>
             <p>Breed: <%= p.getBreed() %></p>
             <p>Age: <%= p.getAge() %> years</p>
 
-            <button class="btn" onclick="openAdoptionForm('<%= p.getId() %>')">Adopt Me</button>
+            <button class="btn" onclick="openAdoptionForm('<%= p.getPet_Id() %>')">Adopt Me</button>
         </div>
     <% 
             }
